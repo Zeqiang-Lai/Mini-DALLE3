@@ -8,11 +8,10 @@ import re
 pipeline = DiffusionPipeline.from_pretrained("runwayml/stable-diffusion-v1-5", torch_dtype=torch.float16)
 pipeline.to("cuda")
 
-# variation =
 
 system_message = {
     'role': 'system',
-    'content': open('prompt.txt', 'r').read().strip()
+    'content': open('prompts/prompt-v1.txt', 'r').read().strip()
 }
 
 pattern = r'<image>(.*?)<\/image>'
@@ -80,7 +79,7 @@ with gr.Blocks() as demo:
         <p align="center"> Replication of Next Generation Text to Image Model. </p>
         """,
     )
-    
+
     state = gr.State({'messages': [system_message], 'images': []})
     chatbot = gr.Chatbot(
         [],
