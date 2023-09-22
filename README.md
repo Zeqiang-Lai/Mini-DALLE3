@@ -16,7 +16,7 @@ python dalle3.py
 
 ## Citation
 
-If you find this repo helpful, please considering citing us.
+If you find this repo helpful, please consider citing us.
 
 ```bibtex
 @misc{hsir,
