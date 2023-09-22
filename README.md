@@ -1,10 +1,10 @@
 <img src="https://github.com/Zeqiang-Lai/Mini-DALLE3/assets/26198430/94d7ca03-eded-4fed-93a5-547d869f4717" style="width: 17%" align="left">
 
-#  Mini-DALLE3
+#  Mini DALL•E 3
 
 Mini-DALLE3: Interactive Text to Image Generation by Prompting Large Language Models
 
-> An experimental attempt to obtain the interactive and interleave text to image and text to text experience with open-source techniques.
+> An experimental attempt to obtain the interactive and interleave text to image and text to text experience of [DALL•E 3](https://openai.com/dall-e-3) with open-source techniques.
 
 https://github.com/Zeqiang-Lai/Mini-DALLE3/assets/26198430/d7af2f0e-2b35-4f64-bace-3113dea4cdfa
 
