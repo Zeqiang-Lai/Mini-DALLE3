@@ -8,7 +8,7 @@ import openai
 import torch
 from diffusers import DiffusionPipeline, StableDiffusionXLPipeline
 
-from ip_adapter import IPAdapterXL
+from models.ip_adapter import IPAdapterXL
 
 logger = logging.getLogger(__file__)
 
