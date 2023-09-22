@@ -1,4 +1,4 @@
-<img src="https://github.com/Zeqiang-Lai/Mini-DALLE3/assets/26198430/94d7ca03-eded-4fed-93a5-547d869f4717" style="width: 17%" align="left">
+<img src="https://github.com/Zeqiang-Lai/Mini-DALLE3/assets/26198430/94d7ca03-eded-4fed-93a5-547d869f4717" style="width: 17%" align="right">
 
 #  Mini DALL•E 3
 
