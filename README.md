@@ -4,6 +4,10 @@ Mini-DALLE3: Interactive Text to Image Generation by Prompting Large Language Mo
 
 
 
+https://github.com/Zeqiang-Lai/Mini-DALLE3/assets/26198430/d7af2f0e-2b35-4f64-bace-3113dea4cdfa
+
+
+
 
 ## Citation
 
