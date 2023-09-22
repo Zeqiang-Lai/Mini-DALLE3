@@ -20,10 +20,10 @@ If you find this repo helpful, please consider citing us.
 
 ```bibtex
 @misc{hsir,
-author={Zeqiang Lai},
-title={Mini-DALLE3: Interactive Text to Image Generation by Prompting Large Language Models},
-year={2023},
-url={https://github.com/Zeqiang-Lai/Mini-DALLE3},
+    author={Zeqiang Lai},
+    title={Mini-DALLE3: Interactive Text to Image Generation by Prompting Large Language Models},
+    year={2023},
+    url={https://github.com/Zeqiang-Lai/Mini-DALLE3},
 }
 ```
 
