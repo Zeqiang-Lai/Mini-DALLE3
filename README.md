@@ -1,14 +1,16 @@
 <img src="https://github.com/Zeqiang-Lai/Mini-DALLE3/assets/26198430/94d7ca03-eded-4fed-93a5-547d869f4717" style="width: 17%" align="right">
 
-<h1 align="center"> Mini DALL•E 3 </h1>
+# Mini DALL•E 3
 
 Mini-DALLE3: Interactive Text to Image Generation by Prompting Large Language Models
 
 > An experimental attempt to obtain the interactive and interleave text to image and text to text experience of [DALL•E 3](https://openai.com/dall-e-3) and [ChatGPT](https://openai.com/chatgpt).
 
-https://github.com/Zeqiang-Lai/Mini-DALLE3/assets/26198430/d7af2f0e-2b35-4f64-bace-3113dea4cdfa
 
-## Try yourself
+https://github.com/Zeqiang-Lai/Mini-DALLE3/assets/26198430/78250401-de79-4878-97a7-201a0a2ab687
+
+
+## Try Yourself 🤗 
 
 - Download the [checkpoint](https://huggingface.co/h94/IP-Adapter) and save it as following 
 ```bash
