@@ -3,20 +3,18 @@ import openai
 from diffusers import DiffusionPipeline
 import torch
 import re
-from ip_adapter.api import IPAdapterWrapper
+
 
 pipeline = DiffusionPipeline.from_pretrained("runwayml/stable-diffusion-v1-5", torch_dtype=torch.float16)
 pipeline.to("cuda")
 
-adapter = IPAdapterWrapper()
 
 system_message = {
     'role': 'system',
-    'content': open('prompts/prompt-v2.txt', 'r').read().strip()
+    'content': open('prompts/prompt-v1.txt', 'r').read().strip()
 }
 
 pattern = r'<image>(.*?)<\/image>'
-edit_pattern = r'<edit>(.*?)<\/edit>'
 
 
 def user(content):
@@ -48,27 +46,6 @@ def remove_image(message):
     return re.sub(pattern, '', message)
 
 
-def extract_edit(message):
-    matches = re.findall(edit_pattern, message)
-    for match in matches:
-        return match.strip()
-    return None
-
-
-def remove_edit(message):
-    return re.sub(edit_pattern, '', message)
-
-
-def text_to_image(image_prompt):
-    image = pipeline(image_prompt).images[0]
-    return image
-
-
-def image_edit(image, image_prompt):
-    image = adapter.edit(image, image_prompt)
-    return image
-
-
 def add_text(history, text):
     history = history + [(text, None)]
     return history, gr.update(value="", interactive=False)
@@ -82,27 +59,12 @@ def bot(history, state):
     response = output
 
     image_prompt = extract_image(output)
-    edit_prompt = extract_edit(output)
-    
     if image_prompt is not None:
         print(image_prompt)
-        image = text_to_image(image_prompt)
+        image = pipeline(image_prompt).images[0]
         image_filename = 'image.png'
         image.save(image_filename)
-        state['images'].append(image)
         history[-1][1] = remove_image(response)
-        history.append((None, (image_filename,)))
-    elif edit_prompt is not None:
-        print("edit", edit_prompt)
-        if len(state['images']) > 0:
-            last_image = state['images'][-1]
-            image = image_edit(last_image, edit_prompt)
-        else:
-            image = text_to_image(edit_prompt) 
-        image_filename = 'image.png'
-        image.save(image_filename)
-        state['images'].append(image)
-        history[-1][1] = remove_edit(response)
         history.append((None, (image_filename,)))
     else:
         history[-1][1] = response
@@ -113,8 +75,8 @@ def bot(history, state):
 with gr.Blocks() as demo:
     gr.HTML(
         """
-        <div align='center'> <h1> Mini DALL•E 3 </h1> </div>
-        <p align="center"> Mini-DALLE3: Interactive Text to Image Generation by Prompting Large Language Models. </p>
+        <div align='center'> <h1>Mini-DALLE3 </h1> </div>
+        <p align="center"> Replication of Next Generation Text to Image Model. </p>
         """,
     )
 
@@ -123,15 +85,15 @@ with gr.Blocks() as demo:
         [],
         bubble_full_width=False,
         height=600,
-        width=400
     )
 
-    txt = gr.Textbox(
-        scale=4,
-        show_label=False,
-        placeholder="Enter text and press enter",
-        container=False,
-    )
+    with gr.Row():
+        txt = gr.Textbox(
+            scale=4,
+            show_label=False,
+            placeholder="Enter text and press enter",
+            container=False,
+        )
 
     txt_msg = txt.submit(add_text, [chatbot, txt], [chatbot, txt], queue=False).then(
         bot, [chatbot, state], [chatbot, state]
