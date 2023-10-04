@@ -8,7 +8,7 @@ import openai
 import torch
 from diffusers import DiffusionPipeline, StableDiffusionXLPipeline
 
-from models.ip_adapter import IPAdapterXL
+from .t2i.ip_adapter import IPAdapterXL
 
 logger = logging.getLogger(__file__)
 
@@ -24,6 +24,7 @@ def ai(content):
 def chat(messages):
     result = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
+        # model="gpt-4",
         messages=messages,
         temperature=0,
     )
@@ -33,14 +34,14 @@ def chat(messages):
 
 
 def extract_pattern(message, pattern):
-    matches = re.findall(pattern, message)
+    matches = re.findall(pattern, message, re.DOTALL)
     for match in matches:
         return match.strip()
     return None
 
 
 def remove_pattern(message, pattern):
-    return re.sub(pattern, '', message)
+    return re.sub(pattern, '', message, flags=re.DOTALL)
 
 
 def image_grid(imgs):
@@ -90,8 +91,8 @@ class APIPool:
 
     def text_to_image(self, prompt, num_samples=1):
         prompt = prompt + ', ' + self.a_prompt
-        images = self.t2i(prompt, negative_prompt=self.n_prompt, 
-                           num_images_per_prompt=num_samples, num_inference_steps=30).images
+        images = self.t2i(prompt, negative_prompt=self.n_prompt,
+                          num_images_per_prompt=num_samples, num_inference_steps=30).images
         return image_grid(images)
 
     def variation(self, image, num_samples=1):
@@ -149,16 +150,24 @@ class ImageEdit:
         return Response(response, image)
 
 
+DEFAULT_PROMPT = 'minidalle3/prompts/prompt-v2.txt'
+
+
 class MiniDALLE3:
-    def __init__(self) -> None:
+    def __init__(
+        self,
+        prompt_path=None,
+    ) -> None:
         self.tools = [
             Text2Image(),
             ImageEdit(),
         ]
 
+        if prompt_path is None:
+            prompt_path = DEFAULT_PROMPT
         self.system_message = {
             'role': 'system',
-            'content': open('prompts/prompt-v2.txt', 'r').read().strip()
+            'content': open(prompt_path, 'r').read().strip()
         }
 
     def ask(self, history_messages, history_images):
