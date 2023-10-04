@@ -2,6 +2,8 @@
 
 # Mini DALL•E 3
 
+[Paper]() • [Demo]()  • [Project Page]()
+
 Mini-DALLE3: Interactive Text to Image Generation by Prompting Large Language Models
 
 > An experimental attempt to obtain the interactive and interleave text to image and text to text experience of [DALL•E 3](https://openai.com/dall-e-3) and [ChatGPT](https://openai.com/chatgpt).
@@ -17,14 +19,13 @@ https://github.com/Zeqiang-Lai/Mini-DALLE3/assets/26198430/78250401-de79-4878-97
 checkpoints
    - models
    - sdxl_models
-gradio_app.py
 ```
 
 - run the following commands, and you will get a gradio-based web demo.
 
 ```bash
 export OPENAI_API_KEY="your key"
-python gradio_app.py
+python -m minidalle3.serves
 ```
 
 ## TODO
