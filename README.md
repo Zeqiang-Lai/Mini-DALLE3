@@ -1,10 +1,18 @@
-<img src="https://github.com/Zeqiang-Lai/Mini-DALLE3/assets/26198430/94d7ca03-eded-4fed-93a5-547d869f4717" style="width: 17%" align="right">
+<p align="center">
+<a href="#">
+    <img src="https://github.com/Zeqiang-Lai/Mini-DALLE3/assets/26198430/11856c34-b5ef-4665-8cb9-8a6e366ae238" alt="minidalle3" width="16.5%">
+    </a> &ensp; 
+</p>
 
-# Mini DALL•E 3
+<p align="center">
+Interactive Text to Image Generation by Prompting Large Language Models
+</p>
 
-[Paper]() • [Demo]()  • [Project Page]()
-
-Mini-DALLE3: Interactive Text to Image Generation by Prompting Large Language Models
+<p align="center">
+<a href="https://light.princeton.edu/publication/delta_prox/">Paper</a> •
+<a href="https://github.com/princeton-computational-imaging/Delta-Prox/tree/main/notebooks">Demo</a> •
+<a href="https://github.com/princeton-computational-imaging/Delta-Prox/tree/main/examples">Project page</a> 
+</p>
 
 > An experimental attempt to obtain the interactive and interleave text to image and text to text experience of [DALL•E 3](https://openai.com/dall-e-3) and [ChatGPT](https://openai.com/chatgpt).
 
