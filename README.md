@@ -10,10 +10,9 @@
 <a href="https://github.com/princeton-computational-imaging/Delta-Prox/tree/main/examples">Project page</a> 
 </p>
 
-<p align="center">
-Interactive Text to Image Generation by Prompting Large Language Models
-</p>
+# 
 
+Mini DALL•E 3: Interactive Text to Image Generation by Prompting Large Language Models
 > An experimental attempt to obtain the interactive and interleave text to image and text to text experience of [DALL•E 3](https://openai.com/dall-e-3) and [ChatGPT](https://openai.com/chatgpt).
 
 
