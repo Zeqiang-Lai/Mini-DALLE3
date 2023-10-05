@@ -7,9 +7,9 @@
 <p align="center">
     <b>Interactive Text to Image Generation </b>
 </br>
-<a href="https://light.princeton.edu/publication/delta_prox/">Paper</a> •
-<a href="https://github.com/princeton-computational-imaging/Delta-Prox/tree/main/notebooks">Demo</a> •
-<a href="https://github.com/princeton-computational-imaging/Delta-Prox/tree/main/examples">Project page</a> 
+<a href="#">Paper</a> •
+<a href="#">Demo</a> •
+<a href="minidalle3.github.io/">Project page</a> 
 </p>
 
 ![teaser4](https://github.com/Zeqiang-Lai/Mini-DALLE3/assets/26198430/036959fc-c81c-4b52-8559-34af29009bb7)
