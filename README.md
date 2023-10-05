@@ -12,8 +12,8 @@
 <a href="https://github.com/princeton-computational-imaging/Delta-Prox/tree/main/examples">Project page</a> 
 </p>
 
+![teaser4](https://github.com/Zeqiang-Lai/Mini-DALLE3/assets/26198430/036959fc-c81c-4b52-8559-34af29009bb7)
 
-https://github.com/Zeqiang-Lai/Mini-DALLE3/assets/26198430/78250401-de79-4878-97a7-201a0a2ab687
 
 > An experimental attempt to obtain the interactive and interleave text to image and text to text experience of [DALL•E 3](https://openai.com/dall-e-3) and [ChatGPT](https://openai.com/chatgpt).
 
