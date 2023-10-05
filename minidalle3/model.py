@@ -24,7 +24,6 @@ def ai(content):
 def chat(messages):
     result = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
-        # model="gpt-4",
         messages=messages,
         temperature=0,
     )
@@ -156,6 +155,7 @@ DEFAULT_PROMPT = 'minidalle3/prompts/prompt-v2.txt'
 class MiniDALLE3:
     def __init__(
         self,
+        llm='gpt3.5',
         prompt_path=None,
     ) -> None:
         self.tools = [

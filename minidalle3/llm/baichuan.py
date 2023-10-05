@@ -9,6 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from sse_starlette.sse import EventSourceResponse
 from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers.generation.utils import GenerationConfig
 
 
 @asynccontextmanager
@@ -111,12 +112,16 @@ async def create_chat_completion(request: ChatCompletionRequest):
         generate = predict(query, history, request.model)
         return EventSourceResponse(generate, media_type="text/event-stream")
 
-    response, _ = model.chat(tokenizer, query, history=history)
+    messages = [{'role': msg.role, 'content': msg.content} for msg in request.messages]
+    response = model.chat(tokenizer, messages)
+
     choice_data = ChatCompletionResponseChoice(
         index=0, message=ChatMessage(role="assistant", content=response), finish_reason="stop"
     )
 
-    return ChatCompletionResponse(model=request.model, choices=[choice_data], object="chat.completion")
+    return ChatCompletionResponse(
+        model=request.model, choices=[choice_data], object="chat.completion"
+    )
 
 
 async def predict(query: str, history: List[List[str]], model_id: str):
@@ -149,9 +154,9 @@ async def predict(query: str, history: List[List[str]], model_id: str):
 
 
 if __name__ == "__main__":
-    model_name = "internlm/internlm-chat-20b"
-    tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)
-    model = AutoModelForCausalLM.from_pretrained(model_name, trust_remote_code=True)
-    model.eval()
+    model_name = "baichuan-inc/Baichuan2-13B-Chat"
+    tokenizer = AutoTokenizer.from_pretrained("baichuan-inc/Baichuan2-13B-Chat", use_fast=False, trust_remote_code=True)
+    model = AutoModelForCausalLM.from_pretrained("baichuan-inc/Baichuan2-13B-Chat", device_map="auto", torch_dtype=torch.bfloat16, trust_remote_code=True)
+    model.generation_config = GenerationConfig.from_pretrained("baichuan-inc/Baichuan2-13B-Chat")
 
     uvicorn.run(app, host="0.0.0.0", port=10039, workers=1)

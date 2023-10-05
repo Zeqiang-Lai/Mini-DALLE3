@@ -45,8 +45,8 @@ def bot(history, state):
     return history, state
 
 
-def main(port=10049):
-    model = MiniDALLE3()
+def main(llm='gpt3.5', port=10049):
+    model = MiniDALLE3(llm)
     
     with gr.Blocks() as demo:
         gr.HTML(
