@@ -10,6 +10,8 @@
 <a href="https://light.princeton.edu/publication/delta_prox/">Paper</a> •
 <a href="https://github.com/princeton-computational-imaging/Delta-Prox/tree/main/notebooks">Demo</a> •
 <a href="https://github.com/princeton-computational-imaging/Delta-Prox/tree/main/examples">Project page</a> 
+</br>
+Work in Progress
 </p>
 
 
@@ -30,7 +32,7 @@ checkpoints
 
 ```bash
 export OPENAI_API_KEY="your key"
-python -m minidalle3.serves
+python -m minidalle3.web
 ```
 
 ## TODO
@@ -38,6 +40,9 @@ python -m minidalle3.serves
 - [x] Support generating image interleaved in the conversations.
 - [ ] Support generating multiple images at once.
 - [ ] Support selecting image.
+- [ ] Support refinement.
+- [ ] Support prompt refinement/variation.
+- [ ] Instruct tuned LLM/SD.
 
 
 ## Citation
