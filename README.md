@@ -10,8 +10,6 @@
 <a href="https://light.princeton.edu/publication/delta_prox/">Paper</a> •
 <a href="https://github.com/princeton-computational-imaging/Delta-Prox/tree/main/notebooks">Demo</a> •
 <a href="https://github.com/princeton-computational-imaging/Delta-Prox/tree/main/examples">Project page</a> 
-</br>
-Work in Progress
 </p>
 
 
