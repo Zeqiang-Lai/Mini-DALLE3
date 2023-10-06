@@ -115,7 +115,7 @@ api = APIPool()
 class Response:
     response: str
     image: PIL.Image.Image = None
-
+    image_prompt: str = None
 
 class Text2Image:
     PATTERN = r'<image>(.*?)<\/image>'
@@ -127,7 +127,7 @@ class Text2Image:
         logger.info(f'Text2Image(prompt="{image_prompt}")')
         image = api.text_to_image(image_prompt)
         response = remove_pattern(message, self.PATTERN)
-        return Response(response, image)
+        return Response(response, image, image_prompt)
 
 
 class ImageEdit:
@@ -146,7 +146,7 @@ class ImageEdit:
             image = api.text_to_image(image_prompt)
 
         response = remove_pattern(response, self.PATTERN)
-        return Response(response, image)
+        return Response(response, image, image_prompt)
 
 
 DEFAULT_PROMPT = 'minidalle3/prompts/prompt-v2.txt'

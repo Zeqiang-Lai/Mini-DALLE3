@@ -1,0 +1,8 @@
+gradio
+pandas
+fire
+torch
+diffusers
+openai
+transformers
+Pillow

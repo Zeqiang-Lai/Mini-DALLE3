@@ -1,6 +1,7 @@
 import gradio as gr
 import logging
 import fire
+import pandas
 
 from .model import MiniDALLE3
 
@@ -37,6 +38,7 @@ def bot(history, state):
         image = response.image
         image.save(image_filename)
         state['images'].append(image)
+        state['image_prompts'].append(response.image_prompt)
         history[-1][1] = response.response
         history.append((None, (image_filename,)))
     else:
@@ -45,9 +47,13 @@ def bot(history, state):
     return history, state
 
 
+def on_select_image(evt: gr.SelectData, state):
+    return state['image_prompts'][evt.index]
+
+
 def main(llm='gpt3.5', port=10049, prompt_path=None):
     model = MiniDALLE3(llm, prompt_path=prompt_path)
-    
+
     with gr.Blocks() as demo:
         gr.HTML(
             """
@@ -56,13 +62,21 @@ def main(llm='gpt3.5', port=10049, prompt_path=None):
             """,
         )
 
-        state = gr.State({'messages': [model.system_message], 'images': [], 'model': model})
-        chatbot = gr.Chatbot(
-            [],
-            bubble_full_width=False,
-            height=600,
-            avatar_images=['assets/man.png', 'assets/bot.png']
-        )
+        state = gr.State({'messages': [model.system_message],
+                          'images': [],
+                          'image_prompts': [],
+                          'model': model})
+
+        with gr.Tab('Mini DALLE3'):
+            chatbot = gr.Chatbot(
+                [],
+                bubble_full_width=False,
+                height=600,
+                avatar_images=['assets/man.png', 'assets/bot.png']
+            )
+        with gr.Tab('Prompt History'):
+            prompt = gr.TextArea(label='Prompt', placeholder='Click the image below to see the prompt.')
+            gallery = gr.Gallery(label='Generated Image')
 
         with gr.Row():
             txt = gr.Textbox(
@@ -80,20 +94,23 @@ def main(llm='gpt3.5', port=10049, prompt_path=None):
 
         btn.click(add_text, [chatbot, txt], [chatbot, txt], queue=False).then(
             bot, [chatbot, state], [chatbot, state]
-        ).then(lambda: gr.update(interactive=True), None, [txt], queue=False)
+        ).then(lambda: gr.update(interactive=True), None, [txt], queue=False).then(
+            lambda state: state['images'], [state], [gallery]
+        )
+        gallery.select(on_select_image, [state], [prompt])
 
         gr.Examples(
             ['I have read a story where it talks about an "astronaut riding a horse" -- What does it look like ?',
-            'Can I see more like this ?',
-            'Can you make the horse run on the grassland ?',
-            'Looks great ! Could you tell me why this image is strange ?',
-            'Cool ! Could you make some sticker ?'],
+             'Can I see more like this ?',
+             'Can you make the horse run on the grassland ?',
+             'Looks great ! Could you tell me why this image is strange ?',
+             'Cool ! Could you make some sticker ?'],
             inputs=[txt],
             label='Examples',
         )
-        
+
     demo.queue().launch(server_port=port)
-    
-    
+
+
 if __name__ == "__main__":
     fire.Fire(main)
