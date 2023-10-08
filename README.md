@@ -1,6 +1,6 @@
 <p align="center">
-<a href="#">
-    <img src="https://github.com/Zeqiang-Lai/Mini-DALLE3/assets/26198430/11856c34-b5ef-4665-8cb9-8a6e366ae238" alt="minidalle3" width="19%">
+<a href="https://minidalle3.github.io/">
+    <img src="https://github.com/Zeqiang-Lai/Mini-DALLE3/assets/26198430/9594f306-cc1a-4a92-bca2-0c64e8daf9c9" alt="minidalle3" width="19%">
     </a> &ensp; 
 </p>
 
@@ -12,11 +12,10 @@
 <a href="https://minidalle3.github.io/">Project page</a> 
 </p>
 
-
 https://github.com/Zeqiang-Lai/Mini-DALLE3/assets/26198430/f4771d76-eef5-41bd-837c-36629e106630
 
 
-![teaser4](https://github.com/Zeqiang-Lai/Mini-DALLE3/assets/26198430/036959fc-c81c-4b52-8559-34af29009bb7)
+![teaser4](https://github.com/Zeqiang-Lai/Mini-DALLE3/assets/26198430/1f17e3c3-6804-4c4e-9266-e902ecedeae8)
 
 
 > An experimental attempt to obtain the interactive and interleave text-to-image and text-to-text experience of [DALL•E 3](https://openai.com/dall-e-3) and [ChatGPT](https://openai.com/chatgpt).
