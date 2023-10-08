@@ -12,7 +12,9 @@
 <a href="https://minidalle3.github.io/">Project page</a> 
 </p>
 
-https://github.com/Zeqiang-Lai/Mini-DALLE3/assets/26198430/f4771d76-eef5-41bd-837c-36629e106630
+
+https://github.com/Zeqiang-Lai/Mini-DALLE3/assets/26198430/5b6c0a0c-ebbf-48db-981e-f97d542a38b4
+
 
 
 ![teaser4](https://github.com/Zeqiang-Lai/Mini-DALLE3/assets/26198430/1f17e3c3-6804-4c4e-9266-e902ecedeae8)
