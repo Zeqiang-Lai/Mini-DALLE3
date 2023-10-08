@@ -7,15 +7,19 @@
 <p align="center">
     <b>Interactive Text to Image (iT2I)</b>
 </br>
-<a href="#">Paper</a> •
-<a href="#">Demo</a> •
-<a href="minidalle3.github.io/">Project page</a> 
+<a href="https://minidalle3.github.io/static/minidalle3.pdf">Paper</a> •
+<a href="http://139.224.23.16:10085/">Demo</a> •
+<a href="https://minidalle3.github.io/">Project page</a> 
 </p>
+
+
+https://github.com/Zeqiang-Lai/Mini-DALLE3/assets/26198430/f4771d76-eef5-41bd-837c-36629e106630
+
 
 ![teaser4](https://github.com/Zeqiang-Lai/Mini-DALLE3/assets/26198430/036959fc-c81c-4b52-8559-34af29009bb7)
 
 
-> An experimental attempt to obtain the interactive and interleave text to image and text to text experience of [DALL•E 3](https://openai.com/dall-e-3) and [ChatGPT](https://openai.com/chatgpt).
+> An experimental attempt to obtain the interactive and interleave text-to-image and text-to-text experience of [DALL•E 3](https://openai.com/dall-e-3) and [ChatGPT](https://openai.com/chatgpt).
 
 ## Try Yourself 🤗 
 
