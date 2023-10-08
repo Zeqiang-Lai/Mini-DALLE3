@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-    <b>Interactive Text to Image Generation </b>
+    <b>Interactive Text to Image (iT2I)</b>
 </br>
 <a href="#">Paper</a> •
 <a href="#">Demo</a> •
@@ -50,7 +50,7 @@ If you find this repo helpful, please consider citing us.
 ```bibtex
 @misc{minidalle3,
     author={Lai, Zeqiang and Zhu, Xizhou and Dai, Jifeng and Qiao, Yu and Wang, Wenhai},
-    title={Mini-DALLE3: Interactive Text to Image Generation by Prompting Large Language Models},
+    title={Mini-DALLE3: Interactive Text to Image by Prompting Large Language Models},
     year={2023},
     url={https://github.com/Zeqiang-Lai/Mini-DALLE3},
 }
