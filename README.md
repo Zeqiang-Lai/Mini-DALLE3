@@ -5,8 +5,6 @@
 </p>
 
 <p align="center">
-    <b>Interactive Text to Image (iT2I)</b>
-</br>
 <a href="https://minidalle3.github.io/static/minidalle3.pdf">Paper</a> •
 <a href="http://139.224.23.16:10085/">Demo</a> •
 <a href="https://minidalle3.github.io/">Project page</a> 
