@@ -1,21 +1,24 @@
 <p align="center">
-<a href="#">
-    <img src="https://github.com/Zeqiang-Lai/Mini-DALLE3/assets/26198430/11856c34-b5ef-4665-8cb9-8a6e366ae238" alt="minidalle3" width="19%">
+<a href="https://minidalle3.github.io/">
+    <img src="https://github.com/Zeqiang-Lai/Mini-DALLE3/assets/26198430/9594f306-cc1a-4a92-bca2-0c64e8daf9c9" alt="minidalle3" width="19%">
     </a> &ensp; 
 </p>
 
 <p align="center">
-    <b>Interactive Text to Image (iT2I)</b>
-</br>
-<a href="#">Paper</a> •
-<a href="#">Demo</a> •
-<a href="minidalle3.github.io/">Project page</a> 
+<a href="http://arxiv.org/abs/2310.07653">Paper</a> •
+<a href="http://139.224.23.16:10085/">Demo</a> •
+<a href="https://minidalle3.github.io/">Project page</a> 
 </p>
 
-![teaser4](https://github.com/Zeqiang-Lai/Mini-DALLE3/assets/26198430/036959fc-c81c-4b52-8559-34af29009bb7)
+
+https://github.com/Zeqiang-Lai/Mini-DALLE3/assets/26198430/5b6c0a0c-ebbf-48db-981e-f97d542a38b4
 
 
-> An experimental attempt to obtain the interactive and interleave text to image and text to text experience of [DALL•E 3](https://openai.com/dall-e-3) and [ChatGPT](https://openai.com/chatgpt).
+
+![teaser4](https://github.com/Zeqiang-Lai/Mini-DALLE3/assets/26198430/1f17e3c3-6804-4c4e-9266-e902ecedeae8)
+
+
+> An experimental attempt to obtain the interactive and interleave text-to-image and text-to-text experience of [DALL•E 3](https://openai.com/dall-e-3) and [ChatGPT](https://openai.com/chatgpt).
 
 ## Try Yourself 🤗 
 
