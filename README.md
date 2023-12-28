@@ -5,9 +5,9 @@
 </p>
 
 <p align="center">
-<a href="http://arxiv.org/abs/2310.07653">Paper</a> •
-<a href="http://139.224.23.16:10085/">Demo</a> •
-<a href="https://minidalle3.github.io/">Project page</a> 
+<a href="http://arxiv.org/abs/2310.07653">Technical Report</a> •
+<a href="https://minidalle3.github.io/">Project page</a> •
+<a href="#">Demo (Temporarily Unavailable)</a>
 </p>
 
 
