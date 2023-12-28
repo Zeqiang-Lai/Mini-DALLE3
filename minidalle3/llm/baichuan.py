@@ -86,7 +86,7 @@ class ChatCompletionResponse(BaseModel):
 
 @app.get("/v1/models", response_model=ModelList)
 async def list_models():
-    model_card = ModelCard(id="internlm")
+    model_card = ModelCard(id="gpt-3.5-turbo")
     return ModelList(data=[model_card])
 
 
@@ -112,16 +112,12 @@ async def create_chat_completion(request: ChatCompletionRequest):
         generate = predict(query, history, request.model)
         return EventSourceResponse(generate, media_type="text/event-stream")
 
-    messages = [{'role': msg.role, 'content': msg.content} for msg in request.messages]
+    messages = [{"role": msg.role, "content": msg.content} for msg in request.messages]
     response = model.chat(tokenizer, messages)
 
-    choice_data = ChatCompletionResponseChoice(
-        index=0, message=ChatMessage(role="assistant", content=response), finish_reason="stop"
-    )
+    choice_data = ChatCompletionResponseChoice(index=0, message=ChatMessage(role="assistant", content=response), finish_reason="stop")
 
-    return ChatCompletionResponse(
-        model=request.model, choices=[choice_data], object="chat.completion"
-    )
+    return ChatCompletionResponse(model=request.model, choices=[choice_data], object="chat.completion")
 
 
 async def predict(query: str, history: List[List[str]], model_id: str):
@@ -141,9 +137,7 @@ async def predict(query: str, history: List[List[str]], model_id: str):
 
         current_length = len(new_response)
 
-        choice_data = ChatCompletionResponseStreamChoice(
-            index=0, delta=DeltaMessage(content=new_text), finish_reason=None
-        )
+        choice_data = ChatCompletionResponseStreamChoice(index=0, delta=DeltaMessage(content=new_text), finish_reason=None)
         chunk = ChatCompletionResponse(model=model_id, choices=[choice_data], object="chat.completion.chunk")
         yield "{}".format(chunk.json(exclude_unset=True, ensure_ascii=False))
 
@@ -156,7 +150,9 @@ async def predict(query: str, history: List[List[str]], model_id: str):
 if __name__ == "__main__":
     model_name = "baichuan-inc/Baichuan2-13B-Chat"
     tokenizer = AutoTokenizer.from_pretrained("baichuan-inc/Baichuan2-13B-Chat", use_fast=False, trust_remote_code=True)
-    model = AutoModelForCausalLM.from_pretrained("baichuan-inc/Baichuan2-13B-Chat", device_map="auto", torch_dtype=torch.bfloat16, trust_remote_code=True)
+    model = AutoModelForCausalLM.from_pretrained(
+        "baichuan-inc/Baichuan2-13B-Chat", device_map="auto", torch_dtype=torch.bfloat16, trust_remote_code=True
+    )
     model.generation_config = GenerationConfig.from_pretrained("baichuan-inc/Baichuan2-13B-Chat")
 
     uvicorn.run(app, host="0.0.0.0", port=10039, workers=1)

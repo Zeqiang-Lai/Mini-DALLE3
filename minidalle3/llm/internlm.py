@@ -85,7 +85,7 @@ class ChatCompletionResponse(BaseModel):
 
 @app.get("/v1/models", response_model=ModelList)
 async def list_models():
-    model_card = ModelCard(id="internlm")
+    model_card = ModelCard(id="gpt-3.5-turbo")
     return ModelList(data=[model_card])
 
 
@@ -112,9 +112,7 @@ async def create_chat_completion(request: ChatCompletionRequest):
         return EventSourceResponse(generate, media_type="text/event-stream")
 
     response, _ = model.chat(tokenizer, query, history=history)
-    choice_data = ChatCompletionResponseChoice(
-        index=0, message=ChatMessage(role="assistant", content=response), finish_reason="stop"
-    )
+    choice_data = ChatCompletionResponseChoice(index=0, message=ChatMessage(role="assistant", content=response), finish_reason="stop")
 
     return ChatCompletionResponse(model=request.model, choices=[choice_data], object="chat.completion")
 
@@ -136,9 +134,7 @@ async def predict(query: str, history: List[List[str]], model_id: str):
 
         current_length = len(new_response)
 
-        choice_data = ChatCompletionResponseStreamChoice(
-            index=0, delta=DeltaMessage(content=new_text), finish_reason=None
-        )
+        choice_data = ChatCompletionResponseStreamChoice(index=0, delta=DeltaMessage(content=new_text), finish_reason=None)
         chunk = ChatCompletionResponse(model=model_id, choices=[choice_data], object="chat.completion.chunk")
         yield "{}".format(chunk.json(exclude_unset=True, ensure_ascii=False))
 

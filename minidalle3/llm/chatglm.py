@@ -17,7 +17,7 @@ from sse_starlette.sse import ServerSentEvent, EventSourceResponse
 
 
 @asynccontextmanager
-async def lifespan(app: FastAPI): # collects GPU memory
+async def lifespan(app: FastAPI):  # collects GPU memory
     yield
     if torch.cuda.is_available():
         torch.cuda.empty_cache()
@@ -33,6 +33,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 class ModelCard(BaseModel):
     id: str
@@ -109,19 +110,15 @@ async def create_chat_completion(request: ChatCompletionRequest):
     history = []
     if len(prev_messages) % 2 == 0:
         for i in range(0, len(prev_messages), 2):
-            if prev_messages[i].role == "user" and prev_messages[i+1].role == "assistant":
-                history.append([prev_messages[i].content, prev_messages[i+1].content])
+            if prev_messages[i].role == "user" and prev_messages[i + 1].role == "assistant":
+                history.append([prev_messages[i].content, prev_messages[i + 1].content])
 
     if request.stream:
         generate = predict(query, history, request.model)
         return EventSourceResponse(generate, media_type="text/event-stream")
 
     response, _ = model.chat(tokenizer, query, history=history)
-    choice_data = ChatCompletionResponseChoice(
-        index=0,
-        message=ChatMessage(role="assistant", content=response),
-        finish_reason="stop"
-    )
+    choice_data = ChatCompletionResponseChoice(index=0, message=ChatMessage(role="assistant", content=response), finish_reason="stop")
 
     return ChatCompletionResponse(model=request.model, choices=[choice_data], object="chat.completion")
 
@@ -129,11 +126,7 @@ async def create_chat_completion(request: ChatCompletionRequest):
 async def predict(query: str, history: List[List[str]], model_id: str):
     global model, tokenizer
 
-    choice_data = ChatCompletionResponseStreamChoice(
-        index=0,
-        delta=DeltaMessage(role="assistant"),
-        finish_reason=None
-    )
+    choice_data = ChatCompletionResponseStreamChoice(index=0, delta=DeltaMessage(role="assistant"), finish_reason=None)
     chunk = ChatCompletionResponse(model=model_id, choices=[choice_data], object="chat.completion.chunk")
     yield "{}".format(chunk.json(exclude_unset=True, ensure_ascii=False))
 
@@ -146,24 +139,14 @@ async def predict(query: str, history: List[List[str]], model_id: str):
         new_text = new_response[current_length:]
         current_length = len(new_response)
 
-        choice_data = ChatCompletionResponseStreamChoice(
-            index=0,
-            delta=DeltaMessage(content=new_text),
-            finish_reason=None
-        )
+        choice_data = ChatCompletionResponseStreamChoice(index=0, delta=DeltaMessage(content=new_text), finish_reason=None)
         chunk = ChatCompletionResponse(model=model_id, choices=[choice_data], object="chat.completion.chunk")
         yield "{}".format(chunk.json(exclude_unset=True, ensure_ascii=False))
 
-
-    choice_data = ChatCompletionResponseStreamChoice(
-        index=0,
-        delta=DeltaMessage(),
-        finish_reason="stop"
-    )
+    choice_data = ChatCompletionResponseStreamChoice(index=0, delta=DeltaMessage(), finish_reason="stop")
     chunk = ChatCompletionResponse(model=model_id, choices=[choice_data], object="chat.completion.chunk")
     yield "{}".format(chunk.json(exclude_unset=True, ensure_ascii=False))
-    yield '[DONE]'
-
+    yield "[DONE]"
 
 
 if __name__ == "__main__":
@@ -174,4 +157,4 @@ if __name__ == "__main__":
     # model = load_model_on_gpus("THUDM/chatglm2-6b", num_gpus=2)
     model.eval()
 
-    uvicorn.run(app, host='0.0.0.0', port=10039, workers=1)
+    uvicorn.run(app, host="0.0.0.0", port=10039, workers=1)

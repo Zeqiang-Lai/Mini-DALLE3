@@ -82,15 +82,15 @@ def on_select_image(evt: gr.SelectData, state):
     return state["image_prompts"][evt.index]
 
 
-def main(llm="gpt3.5", port=10049, prompt_path=None, max_users=1, share=False):
-    model = MiniDALLE3(llm, prompt_path=prompt_path)
+def main(port=10049, prompt_path=None, share=False):
+    model = MiniDALLE3(prompt_path=prompt_path)
 
     with gr.Blocks() as demo:
         gr.HTML(
             """
             <div align='center'> <h1> Mini DALL•E 3 </h1> </div>
             <p align="center"> Mini-DALLE3: Interactive Text to Image by Prompting Large Language Models. </p>
-            <p align="center"><a href="https://github.com/Zeqiang-Lai/MiniDALLE-3">Github</a> | <a href="minidalle3.github.io/static/minidalle3.pdf">Paper</a> | <a href="minidalle3.github.io">Project Page</a></p>
+            <p align="center"><a href="https://github.com/Zeqiang-Lai/MiniDALLE-3">Github</a> | <a href="minidalle3.github.io/static/minidalle3.pdf">Paper</a> | <a href="https://minidalle3.github.io">Project Page</a></p>
             """,
         )
 
@@ -131,7 +131,7 @@ def main(llm="gpt3.5", port=10049, prompt_path=None, max_users=1, share=False):
         ).then(lambda state: state["images"], [state], [gallery])
         gallery.select(on_select_image, [state], [prompt])
 
-    demo.queue(concurrency_count=max_users).launch(server_port=port, server_name="0.0.0.0", share=share)
+    demo.queue().launch(server_port=port, server_name="0.0.0.0", share=share)
 
 
 if __name__ == "__main__":

@@ -33,8 +33,19 @@ checkpoints
 
 ```bash
 export OPENAI_API_KEY="your key"
+python -m minidalle3.web 
+```
+
+- To use other LLM rather than ChatGPT, such as `baichuan`.
+
+```bash
+python -m minidalle3.llm.baichuan
+export OPENAI_API_BASE="http://0.0.0.0:10039/v1"
 python -m minidalle3.web
 ```
+
+>  `chatglm`, `baichuan`, `internlm` are tested.
+> llama have not supported yet. qwen is not tested.
 
 ## TODO
 

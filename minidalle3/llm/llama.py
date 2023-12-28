@@ -35,29 +35,20 @@ def format_tokens(dialogs: List[Dialog]):
         dialog = [
             {
                 "role": dialog[1]["role"],
-                "content": B_SYS
-                + dialog[0]["content"]
-                + E_SYS
-                + dialog[1]["content"],
+                "content": B_SYS + dialog[0]["content"] + E_SYS + dialog[1]["content"],
             }
         ] + dialog[2:]
-        assert all([msg["role"] == "user" for msg in dialog[::2]]) and all(
-            [msg["role"] == "assistant" for msg in dialog[1::2]]
-        ), (
-            "model only supports 'system','user' and 'assistant' roles, "
-            "starting with user and alternating (u/a/u/a/u...)"
+        assert all([msg["role"] == "user" for msg in dialog[::2]]) and all([msg["role"] == "assistant" for msg in dialog[1::2]]), (
+            "model only supports 'system','user' and 'assistant' roles, " "starting with user and alternating (u/a/u/a/u...)"
         )
         """
         Please verify that yout tokenizer support adding "[INST]", "[/INST]" to your inputs.
         Here, we are adding it manually.
         """
         content: List[str] = [
-            f"{B_INST} {(prompt['content']).strip()} {E_INST} {(answer['content']).strip()} "
-            for prompt, answer in zip(dialog[::2], dialog[1::2])
+            f"{B_INST} {(prompt['content']).strip()} {E_INST} {(answer['content']).strip()} " for prompt, answer in zip(dialog[::2], dialog[1::2])
         ]
-        assert (
-            dialog[-1]["role"] == "user"
-        ), f"Last message must be from user, got {dialog[-1]['role']}"
+        assert dialog[-1]["role"] == "user", f"Last message must be from user, got {dialog[-1]['role']}"
         content.append(
             f"{B_INST} {(dialog[-1]['content']).strip()} {E_INST}",
         )
@@ -154,9 +145,7 @@ class LLaMABot:
             length_penalty=self.length_penalty,
         )
 
-        output_text = self.tokenizer.decode(
-            outputs[0], skip_special_tokens=True
-        )
+        output_text = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
 
         return output_text.strip()
 
@@ -227,4 +216,5 @@ These are just a few of the many attractions that Paris has to offer. With so mu
 
 
 if __name__ == "__main__":
+    print("llama is not supported yet")
     test()
